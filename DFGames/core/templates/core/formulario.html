@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %}
+
+{% load static $}
+
+{% block contenido %}
+    {% if perms.core.add_juego %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+        <a class="navbar-brand" href="/">DF Games</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Inicio
+                <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../listar-juegos">Lista de juegos </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a  class="nav-link" href="#">Hola, {{ user.username }} </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+            </li>
+             {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+            </li>
+            {% endif %}
+            
+            </ul>
+
+        </div>
+        </div>
+        </nav>
+
+        <form action="" id="formularioJuego" method="POST">
+            {% csrf_token %}
+            <div class="form-header">
+                <h1 class="form-title">Agregar juego</h1>
+            </div>
+            <label for="Codigo">Codigo:</label>
+            <input type="number" name="txtCodigo" id="txtCodigo" placeholder="0001" required>
+            <br>
+            <label for="Nombre">Nombre:</label>
+            <input type="text" name="txtNombre" id="txtNombre" placeholder="Nombre del juego" required>
+            <br>
+            <label for="Anio">Anio Lanzamiento:</label>
+            <input type="number" name="txtAnio" id="txtAnio" placeholder="2008" required>
+            <br>
+            <label for "Compania">Compania:</label>
+            <select name="cboCompania" id ="cboCompania">
+                <option value="">Seleccionar</option>
+
+                {% for c in companias %}
+
+                <option value="{{ c.id }}">{{ c.name }}</option>
+
+                {% endfor %}
+            </select>
+            <br>
+            <br>
+            <input type="submit" name="btnJuego" id="btnJuego" value="Agregar" >
+            <br>
+                    
+        </form>
+
+        <h2>{{ mensaje }}</h2>
+    {% else %}
+        <h3>Este usuario no cuenta con los permisos para agregar juegos</h3>
+    {% endif %}
+    
+{% endblock contenido %}

@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+    {% if perms.core.add_juego %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                <div class="container">
+                <a class="navbar-brand" href="/">DF Games</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Inicio
+                        <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../formulario">Agregar Juego </a>
+                    </li>
+                
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a  class="nav-link" href="#">Hola, {{ user.username }} </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                    </li>
+                    
+                    {% endif %}
+                    
+                    </ul>
+
+                </div>
+                </div>
+            </nav>
+        <h2>Listado de juegos </h2>
+
+        <table>
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Anio_Lanzamiento</th>
+                <th>Compania</th>
+                <th>Opciones</th>
+            </tr>
+
+            {% for a in juegos %}
+            <tr>
+                <td>{{a.codigo}}</td>
+                <td>{{a.nombre}}</td>
+                <td>{{a.anio_lanzamiento}}</td>
+                <td>{{a.compania.name}}</td>
+                <td>
+                    <a href="{% url 'eliminar_juego' a.id %}">Eliminar</a>
+                    <a href="{% url 'modificar_juego' a.id %}">Modificar</a>
+                </td>
+            </tr>
+            
+            {% endfor %}
+
+        </table>
+
+        {% if messages %}
+            {% for m in messages %}
+
+                <div>{{ m }}</div>
+
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <h3>Este usuario no cuenta con los permisos para listar juegos</h3>
+    {% endif %}
+
+
+{% endblock contenido %}

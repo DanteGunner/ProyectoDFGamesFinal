@@ -1,0 +1,223 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+        <a class="navbar-brand" href="/">DF Games</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Inicio
+                <span class="sr-only">(current)</span>
+                </a>
+            </li> 
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a  class="nav-link" href="#">Hola, {{ user.username }} </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+            </li>
+             {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+            </li>
+            {% endif %}
+            
+            </ul>
+
+        </div>
+        </div>
+    </nav>
+<div class="row">
+      <div class="col-lg-3">
+        <h1 class="my-4">Juegos disponibles</h1>
+        <div class="list-group">
+          <a href="JavaScript:history.back()" class="list-group-item">Volver</a>
+        
+        </div>  
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="{% static 'core/img/CarruselSwitch/Switch.jpg' %}" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="{% static 'core/img/CarruselSwitch/PokemonSwordShield.jpg' %}" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="{% static 'core/img/CarruselSwitch/Mario.jpg' %}" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{% static 'core/img/JuegosSwitch/Zelda.jpg' %}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Zelda: Breath Of The Wild</a>
+                </h4>
+                <h5>$44.990</h5>
+                <p class="card-text">ENTRA EN UN MUNDO DE AVENTURA<br>
+                    Olvida todo lo que sabes sobre los juegos de The Legend of Zelda. Entra en 
+                    un mundo de descubrimientos, exploración y aventura en The Legend of Zelda: 
+                    Breath of the Wild, un nuevo juego de la aclamada serie que rompe con las 
+                    convenciones. Viaja por prados, bosques y cumbres montañosas para descubrir 
+                    qué ha sido del asolado reino de Hyrule en esta maravillosa aventura a cielo 
+                    abierto.</p>
+              </div>
+              <div class="card-footer">
+                <p align="center"><a href="Formulario.html"><button type="button">COMPRAR</button></p></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{% static 'core/img/JuegosSwitch/MarioKart.jpg' %}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Mario Kart 8 Deluxe </a>
+                </h4>
+                <h5>$44.990</h5>
+                <p class="card-text">Gracias a Nintendo Switch, los aficionados pueden disfrutar de 
+                  la versión definitiva de Mario Kart 8 donde quieran y cuando quieran, incluso 
+                  en partidas multijugador local para hasta ocho pilotos. Los populares circuitos 
+                  y personajes de la versión de Wii U están de vuelta, junto a los circuitos y 
+                  personajes descargables, y además se unen a la parrilla personajes nuevos: 
+                  Inkling chico e Inkling chica, de Splatoon; el Rey Boo; Huesitos y Bowsy. Por 
+                  otra parte, el modo batalla se renueva por completo con la batalla de globos 
+                  y el Bob-ombardeo, y con la inclusión de circuitos inéditos como el Parque 
+                  Viaducto o el Estadio de Batalla, que se unen a viejos conocidos como la Mansión 
+                  de Luigi (GCN) y el Circuito de Batalla 1 de Super Mario Kart (Super Nintendo 
+                  Entertainment System).</p>
+              </div>
+              <div class="card-footer">
+                <p align="center"><a href="Formulario.html"><button type="button">COMPRAR</button></p></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{% static 'core/img/JuegosSwitch/Splatoon.jpg' %}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Splatoon 2</a>
+                </h4>
+                <h5>$44.990</h5>
+                <p class="card-text">¡El exitoso Splatoon estrena una segunda entrega! Los combates 
+                  territoriales de cuatro contra cuatro vuelven cargados de novedades, con 
+                  escenarios, prendas y armas inéditos, como el Lanzatintas doble. Se puede jugar 
+                  tanto en el televisor como fuera de casa. Es posible apuntar mediante el control 
+                  de movimiento, con los Joy-Con. Splatoon 2 permite partidas multijugador locales 
+                  y en línea. El juego también permitirá chat de voz a través de la nueva aplicación 
+                  de Nintendo Switch para dispositivos inteligentes (este verano estará disponible 
+                  una versión gratuita y limitada de la aplicación). Como a su predecesor, se le 
+                  irán añadiendo escenarios, prendas y armas en sucesivas actualizaciones después 
+                  del lanzamiento.</p>
+              </div>
+              <div class="card-footer">
+                <p align="center"><a href="Formulario.html"><button type="button">COMPRAR</button></p></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{% static 'core/img/JuegosSwitch/Smash.jpg' %}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Super Smash Bros. Ultimate</a>
+                </h4>
+                <h5>$44.990</h5>
+                <p class="card-text">Luchadores y mundos de juego míticos colisionan en el 
+                  enfrentamiento definitivo: ¡una nueva entrada de la serie Super Smash Bros. 
+                  para Nintendo Switch!<br>
+                    Nuevos luchadores, como los inklings de la serie Splatoon y Ridley de la 
+                    serie Metroid, hacen su debut en Super Smash Bros. junto a todos los personajes 
+                    de las entregas anteriores. ¡Todos!<br>
+                    Un combate más ágil, nuevos objetos, nuevos ataques, nuevas opciones defensivas 
+                    y otras muchas sorpresas mantendrán la batalla al rojo vivo cuando y donde 
+                    quieras.</p>
+              </div>
+              <div class="card-footer">
+                <p align="center"><a href="Formulario.html"><button type="button">COMPRAR</button></p></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{% static 'core/img/JuegosSwitch/PokemonLG.png' %}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Pokemon Let's Go Pikachu</a>
+                </h4>
+                <h5>$44.990</h5>
+                <p class="card-text">Pokémon: Let's Go, Pikachu! lleva la experiencia de un RPG 
+                  clásico a Nintendo Switch con preciosos gráficos en alta definición. La dinámica 
+                  de juego es lo suficientemente sencilla como para que los jugadores más nóveles 
+                  disfruten de su primera incursión en Pokémon. Al mismo tiempo, los Entrenadores 
+                  más veteranos encontrarán no pocos retos para poner a prueba su destreza.<br>
+                  Y además, incluye una función de comunicación con Pokémon GO </p>
+              </div>
+              <div class="card-footer">
+                <p align="center"><a href="Formulario.html"><button type="button">COMPRAR</button></p></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{% static 'core/img/JuegosSwitch/MarioOdi.jpg' %}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Super Mario Odyssey</a>
+                </h4>
+                <h5>$44.990</h5>
+                <p class="card-text">Ajústate la gorra y emprende un viaje único con Super Mario 
+                  Odyssey para Nintendo Switch. El famoso fontanero vuelve a las plataformas 3D 
+                  acompañado por un nuevo aliado muy poco convencional.<br>
+                    Acompaña a Mario en una aventura en 3D enorme por todo el planeta usando 
+                    sus nuevas habilidades para recoger lunas que servirán de combustible a tu 
+                    aeronave, la Odyssey. ¡Y entretanto, rescata a la princesa Peach de las garras 
+                    de Bowser!</p>
+              </div>    
+              <div class="card-footer">
+                <p align="center"><a href="Formulario.html"><button type="button">COMPRAR</button></p></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.col-lg-9 -->
+    </div>
+    <!-- /.row -->
+{% endblock contenido %}

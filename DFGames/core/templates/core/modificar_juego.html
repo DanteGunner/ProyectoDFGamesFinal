@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% load static $}
+
+{% block contenido %}
+    {% if perms.core.add_juego %}
+        <form action="" id="formularioJuego" method="POST">
+            {% csrf_token %}
+            <div class="form-header">
+                <h1 class="form-title">Modificar juego</h1>
+            </div>
+            <input type="hidden" name="txtId" id="txtId" value="{{ juego.id }}">
+
+            <label for="Codigo">Codigo:</label>
+            <input type="number" name="txtCodigo" id="txtCodigo" value="{{ juego.codigo }}">
+            <br>
+            <label for="Nombre">Nombre:</label>
+            <input type="text" name="txtNombre" id="txtNombre" value="{{ juego.nombre }}">
+            <br>
+            <label for="Anio">Anio Lanzamiento:</label>
+            <input type="number" name="txtAnio" id="txtAnio" value="{{ juego.anio_lanzamiento }}">
+            <br>
+            <label for "Compania">Compania:</label>
+            <select name="cboCompania" id ="cboCompania">
+                <option value="">Seleccionar</option>
+
+                {% for c in companias %}
+
+                <option 
+
+                {% if c.id == juego.compania.id %}
+                {{'selected'}}
+                {% endif %}
+                
+                value="{{ c.id }}">{{ c.name }}</option>
+
+                {% endfor %}
+            </select>
+            <br>
+            <br>
+            <input type="submit" name="btnJuego" id="btnJuego" value="Modificar">
+            <br>
+                    
+        </form>
+
+        <h2>{{ mensaje }}</h2>
+    {% else %}
+        <h3>Este usuario no cuenta con los permisos para modificar juegos</h3>
+    {% endif %}
+{% endblock contenido %}
